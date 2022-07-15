@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.murilorb.course.entities.Category;
 import com.murilorb.course.entities.Order;
 import com.murilorb.course.entities.OrderItem;
+import com.murilorb.course.entities.Payment;
 import com.murilorb.course.entities.Product;
 import com.murilorb.course.entities.User;
 import com.murilorb.course.entities.enums.OrderStatus;
@@ -65,6 +66,9 @@ public class TestConfig implements CommandLineRunner {
 		Order order1 = new Order(null, Instant.parse("2022-06-20T19:53:07Z"), user1, OrderStatus.PAID);
 		Order order2 = new Order(null, Instant.parse("2022-07-21T03:42:10Z"), user2, OrderStatus.WAITING_PAYMENT);
 		Order order3 = new Order(null, Instant.parse("2022-07-22T15:21:22Z"), user1, OrderStatus.WAITING_PAYMENT);
+
+		Payment pay1 = new Payment(null, Instant.parse("2022-06-20T21:53:07Z"), order1);
+		order1.setPayment(pay1);
 
 		userRepository.saveAll(Arrays.asList(user1, user2));
 		orderRepository.saveAll(Arrays.asList(order1, order2, order3));
