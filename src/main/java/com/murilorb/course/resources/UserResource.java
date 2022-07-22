@@ -38,10 +38,10 @@ public class UserResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<User> insert(@RequestBody User newObj) {
-		newObj = service.insert(newObj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
-		return ResponseEntity.created(uri).body(newObj);
+	public ResponseEntity<User> insert(@RequestBody User obj) {
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).body(obj);
 	}
 
 	@DeleteMapping(value = "/{id}")

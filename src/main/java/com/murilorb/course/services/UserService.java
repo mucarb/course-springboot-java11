@@ -28,8 +28,9 @@ public class UserService {
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
-	public User insert(User newObj) {
-		return repository.save(newObj);
+	public User insert(User obj) {
+		obj.setId(null);
+		return repository.save(obj);
 	}
 
 	public void delete(Long id) {
