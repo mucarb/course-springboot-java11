@@ -23,7 +23,7 @@ public class CategoryService {
 
 	public Category findById(Long id) {
 		Optional<Category> obj = repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
 	public Category insert(Category obj) {
@@ -37,6 +37,16 @@ public class CategoryService {
 		} catch (EmptyResultDataAccessException e) {
 			throw new ResourceNotFoundException(id);
 		}
+	}
+
+	public Category update(Long id, Category obj) {
+		Category entity = findById(id);
+		updateData(entity, obj);
+		return repository.save(entity);
+	}
+
+	private void updateData(Category entity, Category obj) {
+		entity.setName(obj.getName());
 	}
 
 }
