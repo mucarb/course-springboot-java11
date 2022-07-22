@@ -24,4 +24,9 @@ public class CategoryService {
 		return obj.get();
 	}
 
+	public Category insert(Category obj) {
+		obj.setId(null);
+		return repository.save(obj);
+	}
+
 }
