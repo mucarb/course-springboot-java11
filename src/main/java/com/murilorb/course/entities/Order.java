@@ -40,11 +40,12 @@ public class Order implements Serializable {
 	private Payment payment;
 
 	public Order() {
+		this.moment = Instant.now();
 	}
 
 	public Order(Long id, Instant moment, User client, OrderStatus orderStatus) {
 		this.id = id;
-		this.moment = moment;
+		this.moment = Instant.now();
 		this.client = client;
 		setOrderStatus(orderStatus);
 	}
